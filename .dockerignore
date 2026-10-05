@@ -1,0 +1,15 @@
+.git
+.github
+.vscode
+.idea
+.env
+.env.*
+node_modules
+dist
+coverage
+test
+storage
+src/generated/prisma
+*.log
+*.tmp
+*.temp

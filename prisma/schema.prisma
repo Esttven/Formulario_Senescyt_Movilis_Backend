@@ -1,0 +1,331 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Estudiante {
+  id                     Int      @id @default(autoincrement())
+  tipoDocumento          String   @map("tipo_documento")
+  numeroIdentificacion   String   @map("numero_identificacion")
+  primerApellido         String   @map("primer_apellido")
+  segundoApellido        String   @map("segundo_apellido")
+  primerNombre           String   @map("primer_nombre")
+  segundoNombre          String   @map("segundo_nombre")
+  sexo                   String
+  genero                 String
+  estadoCivil            String   @map("estado_civil")
+  etnia                  String
+  tipoSangre             String   @map("tipo_sangre")
+  discapacidad           String
+  porcentajeDiscapacidad String?  @map("porcentaje_discapacidad")
+  numCarnetConadis       String?  @map("num_carnet_conadis")
+  tipoDiscapacidad       String?  @map("tipo_discapacidad")
+  fechaNacimiento        DateTime @map("fecha_nacimiento") @db.Date
+
+  paisNacionalidadId    String? @map("pais_nacionalidad_id")
+  provinciaNacimientoId String? @map("provincia_nacimiento_id")
+  cantonNacimientoId    String? @map("canton_nacimiento_id")
+  paisResidenciaId      String? @map("pais_residencia_id")
+  provinciaResidenciaId String? @map("provincia_residencia_id")
+  cantonResidenciaId    String? @map("canton_residencia_id")
+  nacionalidadId        String? @map("nacionalidad_id")
+  puebloId              String? @map("pueblo_id")
+
+  tipoColegioId               String?   @map("tipo_colegio_id")
+  colegioProcedenciaId        String?   @map("colegio_procedencia_id")
+  nombreColegioProcedencia    String?   @map("nombre_colegio_procedencia") @db.VarChar(200)
+  tituloBachiller             String?   @map("titulo_bachiller") @db.Text
+  anioGraduacion              Int?      @map("anio_graduacion")
+  modalidadCarrera            String?   @map("modalidad_carrera")
+  jornadaCarrera              String?   @map("jornada_carrera")
+  fechaInicioCarrera          DateTime? @map("fecha_inicio_carrera") @db.Date
+  fechaMatricula              DateTime? @map("fecha_matricula") @db.Date
+  tipoMatricula               String?   @map("tipo_matricula")
+  duracionPeriodoAcademico    Int?      @map("duracion_periodo_academico")
+  nivelAcademico              String?   @map("nivel_academico")
+  haRepetidoAlMenosUnaMateria String?   @map("ha_repetido_al_menos_una_materia")
+  paralelo                    String?
+  haPerdidoLaGratuidad        String?   @map("ha_perdido_la_gratuidad")
+  recibePensionDiferenciada   String?   @map("recibe_pension_diferenciada")
+  carrera                     String?
+  disenoCurricular            String?   @map("diseno_curricular")
+  periodoAcademico            String?   @map("periodo_academico")
+
+  estudianteOcupacion String? @map("estudiante_ocupacion")
+  trabajoEspecifique  String? @map("trabajo_especifique") @db.VarChar(200)
+  ingresosEstudiante  String? @map("ingresos_estudiante")
+  bonoDesarrollo      String? @map("bono_desarrollo")
+
+  haRealizadoPracticasPreprofesionales        String? @map("ha_realizado_practicas_preprofesionales")
+  nroHorasPracticasPreprofesionalesPorPeriodo Int?    @map("nro_horas_practicas_preprofesionales_por_periodo")
+  entornoInstitucionalPracticasProfesionales  String? @map("entorno_institucional_practicas_profesionales")
+  sectorEconomicoPracticaProfesional          String? @map("sector_economico_practica_profesional")
+
+  tipoBeca                           String?  @map("tipo_beca")
+  primeraRazonBeca                   String?  @map("primera_razon_beca")
+  segundaRazonBeca                   String?  @map("segunda_razon_beca")
+  terceraRazonBeca                   String?  @map("tercera_razon_beca")
+  cuartaRazonBeca                    String?  @map("cuarta_razon_beca")
+  quintaRazonBeca                    String?  @map("quinta_razon_beca")
+  sextaRazonBeca                     String?  @map("sexta_razon_beca")
+  montoBeca                          Decimal? @map("monto_beca") @db.Decimal(12, 2)
+  porcentajeBecaCoberturaArancel     Decimal? @map("porcentaje_beca_cobertura_arancel") @db.Decimal(5, 2)
+  porcentajeBecaCoberturaManutencion Decimal? @map("porcentaje_beca_cobertura_manutencion") @db.Decimal(5, 2)
+  financiamientoBeca                 String?  @map("financiamiento_beca")
+  montoAyudaEconomica                Decimal? @map("monto_ayuda_economica") @db.Decimal(12, 2)
+  montoCreditoEducativo              Decimal? @map("monto_credito_educativo") @db.Decimal(12, 2)
+  financiamientoFondosPropios        Boolean  @default(false) @map("financiamiento_fondos_propios")
+  financiamientoAyudaPadres          Boolean  @default(false) @map("financiamiento_ayuda_padres")
+  financiamientoTarjetaCredito       Boolean  @default(false) @map("financiamiento_tarjeta_credito")
+  financiamientoEntidadFinanciera    Boolean  @default(false) @map("financiamiento_entidad_financiera")
+  financiamientoTercerasPersonas     Boolean  @default(false) @map("financiamiento_terceras_personas")
+  financiamientoQuienes              String?  @map("financiamiento_quienes") @db.VarChar(200)
+
+  participaEnProyectoVinculacionSociedad String? @map("participa_en_proyecto_vinculacion_sociedad")
+  tipoAlcanceProyectoVinculacion         String? @map("tipo_alcance_proyecto_vinculacion")
+
+  correoElectronico             String? @map("correo_electronico")
+  correoInstitucional           String? @map("correo_institucional")
+  numeroCelular                 String? @map("numero_celular")
+  numeroConvencional            String? @map("numero_convencional")
+  direccionDomicilio            String? @map("direccion_domicilio") @db.Text
+  lugarResidencia               String? @map("lugar_residencia")
+  referenciaDomiciliaria        String? @map("referencia_domiciliaria") @db.Text
+  parroquiaProcedencia          String? @map("parroquia_procedencia")
+  parroquiaResidencia           String? @map("parroquia_residencia")
+  barrioSector                  String? @map("barrio_sector")
+  paisProcedenciaExtranjero     String? @map("pais_procedencia_extranjero")
+  estadoProvinciaProcedencia    String? @map("estado_provincia_procedencia")
+  cantonProcedencia             String? @map("canton_procedencia")
+  barrioSectorProcedencia       String? @map("barrio_sector_procedencia")
+  direccionDomicilioProcedencia String? @map("direccion_domicilio_procedencia") @db.Text
+
+  alergias                     String? @db.Text
+  presentaAlergiaImportante    String? @map("presenta_alergia_importante")
+  medicamentos                 String? @db.Text
+  enfermedadCatastrofica       String? @map("enfermedad_catastrofica")
+  presentaCarnetDiscapacidad   String? @map("presenta_carnet_discapacidad")
+  referenciaPersonalNombre     String? @map("referencia_personal_nombre")
+  referenciaPersonalParentesco String? @map("referencia_personal_parentesco")
+  referenciaPersonalTelefono   String? @map("referencia_personal_telefono")
+  referenciaPersonalCorreo     String? @map("referencia_personal_correo")
+  contactoEmergenciaNombre     String? @map("contacto_emergencia_nombre")
+  contactoEmergenciaParentesco String? @map("contacto_emergencia_parentesco")
+  contactoEmergenciaTelefono   String? @map("contacto_emergencia_telefono")
+  contactoEmergenciaCorreo     String? @map("contacto_emergencia_correo")
+
+  nivelFormacionPadre   String?  @map("nivel_formacion_padre")
+  nivelFormacionMadre   String?  @map("nivel_formacion_madre")
+  ingresoTotalHogar     Decimal? @map("ingreso_total_hogar") @db.Decimal(12, 2)
+  cantidadMiembrosHogar Int?     @map("cantidad_miembros_hogar")
+
+  zonaVivienda                  String?  @map("zona_vivienda")
+  coordenadasVivienda           String?  @map("coordenadas_vivienda")
+  croquisViviendaUrl            String?  @map("croquis_vivienda_url") @db.Text
+  tipoPropiedadVivienda         String?  @map("tipo_propiedad_vivienda")
+  estructuraVivienda            String?  @map("estructura_vivienda")
+  estructuraViviendaEspecifique String?  @map("estructura_vivienda_especifique")
+  tipoVivienda                  String?  @map("tipo_vivienda")
+  serviciosDisponibles          String?  @map("servicios_disponibles") @db.Text
+  servicioEnergiaElectrica      Boolean? @map("servicio_energia_electrica")
+  servicioAguaPotable           Boolean? @map("servicio_agua_potable")
+  servicioAlcantarillado        Boolean? @map("servicio_alcantarillado")
+  servicioTelefonoFijo          Boolean? @map("servicio_telefono_fijo")
+  servicioInternet              Boolean? @map("servicio_internet")
+  servicioTvCable               Boolean? @map("servicio_tv_cable")
+  servicioPlanDatos             Boolean? @map("servicio_plan_datos")
+  cantidadBanos                 Int?     @map("cantidad_banos")
+  cantidadHabitaciones          Int?     @map("cantidad_habitaciones")
+  comparteHabitacion            String?  @map("comparte_habitacion")
+  conQuienVive                  String?  @map("con_quien_vive")
+  tamanoViviendaSuficiente      String?  @map("tamano_vivienda_suficiente")
+
+  dinamicaFamiliar                          String? @map("dinamica_familiar") @db.Text
+  violenciaFamiliar                         String? @map("violencia_familiar")
+  tipoViolenciaFamiliar                     String? @map("tipo_violencia_familiar")
+  estudianteCabezaFamiliar                  String? @map("estudiante_cabeza_familiar")
+  familiaDiscapacidadEnfermedadCatastrofica String? @map("familia_discapacidad_enfermedad_catastrofica")
+  familiaProblemaSalud                      String? @map("familia_problema_salud")
+  familiaParentesco                         String? @map("familia_parentesco")
+  familiaServiciosMedicos                   String? @map("familia_servicios_medicos")
+  familiaServiciosMedicosDetalle            String? @map("familia_servicios_medicos_detalle") @db.Text
+
+  egresoVivienda         Decimal? @map("egreso_vivienda") @db.Decimal(12, 2)
+  egresoAlimentacion     Decimal? @map("egreso_alimentacion") @db.Decimal(12, 2)
+  egresoEducacion        Decimal? @map("egreso_educacion") @db.Decimal(12, 2)
+  egresoIndumentaria     Decimal? @map("egreso_indumentaria") @db.Decimal(12, 2)
+  egresoTransporte       Decimal? @map("egreso_transporte") @db.Decimal(12, 2)
+  egresoSalud            Decimal? @map("egreso_salud") @db.Decimal(12, 2)
+  egresoServiciosBasicos Decimal? @map("egreso_servicios_basicos") @db.Decimal(12, 2)
+  egresoOtros            Decimal? @map("egreso_otros") @db.Decimal(12, 2)
+  totalEgresos           Decimal? @map("total_egresos") @db.Decimal(12, 2)
+
+  tipoComprobante               String? @map("tipo_comprobante")
+  facturacionNombre             String? @map("facturacion_nombre")
+  facturacionTipoIdentificacion String? @map("facturacion_tipo_identificacion")
+  facturacionIdentificacion     String? @map("facturacion_identificacion")
+  facturacionDireccion          String? @map("facturacion_direccion") @db.Text
+  facturacionCorreo             String? @map("facturacion_correo")
+  facturacionTelefono           String? @map("facturacion_telefono")
+  mantenerDatosFacturacion      String? @map("mantener_datos_facturacion")
+
+  copiaCedula                    String? @map("copia_cedula") @db.Text
+  copiaPapeleta                  String? @map("copia_papeleta") @db.Text
+  certificadoRegistroTitulo      String? @map("certificado_registro_titulo") @db.Text
+  justificacionRetrasoDocumentos String? @map("justificacion_retraso_documentos") @db.Text
+
+  registroFichaEstudiantilCompletado    Boolean  @default(false) @map("registro_ficha_estudiantil_completado")
+  registroFichaSocioeconomicaCompletado Boolean  @default(false) @map("registro_ficha_socioeconomica_completado")
+  registroDatosFacturacionCompletado    Boolean  @default(false) @map("registro_datos_facturacion_completado")
+  estadoRegistro                        String   @default("PENDIENTE") @map("estado_registro")
+  createdAt                             DateTime @default(now()) @map("created_at")
+  updatedAt                             DateTime @updatedAt @map("updated_at")
+
+  paisNacionalidad    Pais?                 @relation("PaisNacionalidad", fields: [paisNacionalidadId], references: [id], onDelete: SetNull)
+  paisResidencia      Pais?                 @relation("PaisResidencia", fields: [paisResidenciaId], references: [id], onDelete: SetNull)
+  provinciaNacimiento Provincia?            @relation("ProvinciaNacimiento", fields: [provinciaNacimientoId], references: [id], onDelete: SetNull)
+  provinciaResidencia Provincia?            @relation("ProvinciaResidencia", fields: [provinciaResidenciaId], references: [id], onDelete: SetNull)
+  cantonNacimiento    Canton?               @relation("CantonNacimiento", fields: [cantonNacimientoId], references: [id], onDelete: SetNull)
+  cantonResidencia    Canton?               @relation("CantonResidencia", fields: [cantonResidenciaId], references: [id], onDelete: SetNull)
+  nacionalidad        PuebloNacionalidad?   @relation("Nacionalidad", fields: [nacionalidadId], references: [id], onDelete: SetNull)
+  pueblo              PuebloNacionalidad?   @relation("Pueblo", fields: [puebloId], references: [id], onDelete: SetNull)
+  sectorEconomico     SectorEconomico?      @relation(fields: [sectorEconomicoId], references: [id], onDelete: SetNull)
+  sectorEconomicoId   String?               @map("sector_economico_id")
+  colegioProcedencia  Colegio?              @relation(fields: [colegioProcedenciaId], references: [id], onDelete: SetNull)
+  composicionFamiliar ComposicionFamiliar[]
+  ingresosFamiliares  IngresoFamiliar[]
+  documentos          Documento[]
+
+  @@unique([tipoDocumento, numeroIdentificacion])
+  @@index([numeroIdentificacion])
+  @@index([estadoRegistro])
+  @@map("estudiantes")
+}
+
+model ComposicionFamiliar {
+  id               Int        @id @default(autoincrement())
+  estudianteId     Int        @map("estudiante_id")
+  nombresApellidos String     @map("nombres_apellidos") @db.VarChar(200)
+  fechaNacimiento  DateTime?  @map("fecha_nacimiento") @db.Date
+  cedulaIdentidad  String?    @map("cedula_identidad") @db.VarChar(13)
+  estadoCivil      String?
+  parentesco       String?
+  nivelEstudios    String?    @map("nivel_estudios")
+  titulo           String?    @db.VarChar(120)
+  laborOcupacion   String?    @map("labor_ocupacion") @db.VarChar(120)
+  createdAt        DateTime   @default(now()) @map("created_at")
+  updatedAt        DateTime   @updatedAt @map("updated_at")
+  estudiante       Estudiante @relation(fields: [estudianteId], references: [id], onDelete: Cascade)
+
+  @@index([estudianteId])
+  @@map("composicion_familiar")
+}
+
+model IngresoFamiliar {
+  id               Int        @id @default(autoincrement())
+  estudianteId     Int        @map("estudiante_id")
+  nombresApellidos String     @map("nombres_apellidos") @db.VarChar(200)
+  parentesco       String?
+  actividadLaboral String?    @map("actividad_laboral") @db.VarChar(120)
+  ingresoMensual   Decimal?   @map("ingreso_mensual") @db.Decimal(12, 2)
+  ingresosExtras   Decimal?   @map("ingresos_extras") @db.Decimal(12, 2)
+  total            Decimal?   @db.Decimal(12, 2)
+  createdAt        DateTime   @default(now()) @map("created_at")
+  updatedAt        DateTime   @updatedAt @map("updated_at")
+  estudiante       Estudiante @relation(fields: [estudianteId], references: [id], onDelete: Cascade)
+
+  @@index([estudianteId])
+  @@map("ingresos_familiares")
+}
+
+model Documento {
+  id           Int        @id @default(autoincrement())
+  estudianteId Int        @map("estudiante_id")
+  tipo         String
+  url          String     @db.Text
+  storageKey   String?    @map("storage_key") @db.Text
+  mimeType     String?    @map("mime_type")
+  sizeBytes    BigInt?    @map("size_bytes")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+  estudiante   Estudiante @relation(fields: [estudianteId], references: [id], onDelete: Cascade)
+
+  @@index([estudianteId, tipo])
+  @@map("documentos")
+}
+
+model Pais {
+  id                      String       @id
+  codigo                  Int?
+  nombre                  String
+  provincias              Provincia[]
+  estudiantesNacionalidad Estudiante[] @relation("PaisNacionalidad")
+  estudiantesResidencia   Estudiante[] @relation("PaisResidencia")
+
+  @@map("paises")
+}
+
+model Provincia {
+  id                    String       @id
+  codigo                Int?
+  nombre                String
+  paisId                String       @map("pais_id")
+  pais                  Pais         @relation(fields: [paisId], references: [id], onDelete: Restrict)
+  cantones              Canton[]
+  estudiantesNacimiento Estudiante[] @relation("ProvinciaNacimiento")
+  estudiantesResidencia Estudiante[] @relation("ProvinciaResidencia")
+
+  @@index([paisId])
+  @@map("provincias")
+}
+
+model Canton {
+  id                    String       @id
+  codigo                Int?
+  nombre                String
+  provinciaId           String       @map("provincia_id")
+  provincia             Provincia    @relation(fields: [provinciaId], references: [id], onDelete: Restrict)
+  estudiantesNacimiento Estudiante[] @relation("CantonNacimiento")
+  estudiantesResidencia Estudiante[] @relation("CantonResidencia")
+
+  @@index([provinciaId])
+  @@map("cantones")
+}
+
+model PuebloNacionalidad {
+  id                      String       @id
+  codigo                  Int?
+  nombre                  String
+  tipo                    String
+  estudiantesNacionalidad Estudiante[] @relation("Nacionalidad")
+  estudiantesPueblo       Estudiante[] @relation("Pueblo")
+
+  @@index([tipo])
+  @@map("pueblos_nacionalidades")
+}
+
+model SectorEconomico {
+  id          String       @id
+  codigo      Int?
+  nombre      String
+  estudiantes Estudiante[]
+
+  @@map("sectores_economicos")
+}
+
+model Colegio {
+  id            String       @id
+  codigo        Int?
+  nombre        String
+  provincia     String?
+  canton        String?
+  sostenimiento String?
+  estudiantes   Estudiante[]
+
+  @@index([provincia, canton])
+  @@map("colegios")
+}

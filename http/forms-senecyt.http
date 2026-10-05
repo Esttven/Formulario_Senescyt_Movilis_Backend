@@ -1,0 +1,115 @@
+@baseUrl = http://localhost:3008/api
+@studentId = 1
+@documentUrl = http://localhost:3008/uploads/titulo/example.pdf
+@filePath = C:/temp/example.pdf
+
+### Health
+GET {{baseUrl}}/health
+
+### Enums
+GET {{baseUrl}}/estudiantes/enums
+
+### Countries
+GET {{baseUrl}}/paises
+
+### Provinces by country
+GET {{baseUrl}}/provincias?paisId=EC
+
+### Cantons by province
+GET {{baseUrl}}/cantones?provinciaId=17
+
+### Schools
+GET {{baseUrl}}/colegios?provincia=Pichincha&canton=Quito
+
+### Create or update a student step
+POST {{baseUrl}}/estudiantes/guardar-paso
+Content-Type: application/json
+
+{
+  "tipoDocumento": "CEDULA",
+  "numeroIdentificacion": "1234567890",
+  "primerApellido": "GARCIA",
+  "segundoApellido": "NA",
+  "primerNombre": "JUAN",
+  "segundoNombre": "NA",
+  "sexo": "HOMBRE",
+  "genero": "MASCULINO",
+  "estadoCivil": "SOLTERO",
+  "etnia": "MESTIZO",
+  "tipoSangre": "O_POSITIVO",
+  "discapacidad": "NO",
+  "fechaNacimiento": "2000-01-01",
+  "paisNacionalidadId": "EC",
+  "paisResidenciaId": "EC",
+  "carrera": "Desarrollo de Software",
+  "modalidadCarrera": "PRESENCIAL",
+  "jornadaCarrera": "MATUTINA",
+  "correoElectronico": "juan@example.com",
+  "numeroCelular": "0999999999",
+  "composicionFamiliar": [
+    {
+      "nombresApellidos": "MARIA GARCIA",
+      "parentesco": "MADRE"
+    }
+  ],
+  "ingresosFamiliares": [
+    {
+      "nombresApellidos": "MARIA GARCIA",
+      "parentesco": "MADRE",
+      "ingresoMensual": 500,
+      "ingresosExtras": 0,
+      "total": 500
+    }
+  ]
+}
+
+### List students
+GET {{baseUrl}}/estudiantes
+
+### Get one student with relations and child arrays
+GET {{baseUrl}}/estudiantes/{{studentId}}
+
+### Search by document
+GET {{baseUrl}}/estudiantes/buscar?tipoDocumento=CEDULA&numeroIdentificacion=1234567890
+
+### Partial administrative update
+PUT {{baseUrl}}/estudiantes/{{studentId}}
+Content-Type: application/json
+
+{
+  "nombreColegioProcedencia": "COLEGIO NUEVO"
+}
+
+### Upload title
+POST {{baseUrl}}/estudiantes/upload-titulo-bachiller?estudianteId={{studentId}}
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="archivo"; filename="titulo.pdf"
+Content-Type: application/pdf
+
+< C:/temp/titulo.pdf
+--boundary--
+
+### Upload housing sketch
+POST {{baseUrl}}/estudiantes/upload-croquis-vivienda
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="archivo"; filename="croquis.png"
+Content-Type: image/png
+
+< C:/temp/croquis.png
+--boundary--
+
+### Delete title
+POST {{baseUrl}}/estudiantes/delete-titulo-bachiller
+Content-Type: application/json
+
+{
+  "url": "{{documentUrl}}",
+  "estudianteId": {{studentId}}
+}
+
+### Delete student
+DELETE {{baseUrl}}/estudiantes/{{studentId}}

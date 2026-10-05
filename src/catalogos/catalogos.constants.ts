@@ -1,0 +1,141 @@
+export const ENUM_VALUES = {
+  TipoDocumento: ['CEDULA', 'PASAPORTE'],
+  Sexo: ['HOMBRE', 'MUJER'],
+  Genero: ['MASCULINO', 'FEMENINO'],
+  EstadoCivil: ['SOLTERO', 'CASADO', 'DIVORCIADO', 'UNION_LIBRE', 'VIUDO'],
+  Etnia: [
+    'INDIGENA',
+    'AFROECUATORIANO',
+    'NEGRO',
+    'MULATO',
+    'MONTUBIO',
+    'MESTIZO',
+    'BLANCO',
+    'OTRO',
+    'NO_REGISTRA',
+  ],
+  TipoSangre: [
+    'A_POSITIVO',
+    'A_NEGATIVO',
+    'B_POSITIVO',
+    'B_NEGATIVO',
+    'AB_POSITIVO',
+    'AB_NEGATIVO',
+    'O_POSITIVO',
+    'O_NEGATIVO',
+  ],
+  Discapacidad: ['SI', 'NO'],
+  TipoDiscapacidad: ['INTELECTUAL', 'FISICA', 'VISUAL', 'AUDITIVA', 'MENTAL', 'OTRA', 'NO_APLICA'],
+  TipoColegio: [
+    'FISCAL',
+    'FISCOMISIONAL',
+    'PARTICULAR',
+    'MUNICIPAL',
+    'EXTRANJERO',
+    'NO_APLICA',
+    'NO_REGISTRA',
+  ],
+  ModalidadCarrera: ['PRESENCIAL', 'SEMIPRESENCIAL', 'A_DISTANCIA', 'DUAL', 'LINEA', 'HIBRIDA'],
+  JornadaCarrera: ['MATUTINA', 'VESPERTINA', 'NOCTURNA', 'INTENSIVA'],
+  TipoMatricula: ['ORDINARIA', 'EXTRAORDINARIA', 'ESPECIAL'],
+  NivelAcademico: [
+    'PRIMERO',
+    'SEGUNDO',
+    'TERCERO',
+    'CUARTO',
+    'QUINTO',
+    'SEXTO',
+    'SEPTIMO',
+    'ESPECIALISTA_TECNOLOGICO',
+    'MAGISTER_TECNOLOGICO',
+  ],
+  HaRepetidoAlMenosUnaMateria: ['SI', 'NO'],
+  HaPerdidoLaGratuidad: ['SI', 'NO', 'NO_APLICA'],
+  Paralelo: Array.from('ABCDEFGHIJKLMNOPQRST'),
+  RecibePensionDiferenciada: ['SI', 'NO', 'NO_APLICA'],
+  EstudianteOcupacion: ['SOLO_ESTUDIA', 'TRABAJA_Y_ESTUDIA'],
+  IngresosEstudiante: [
+    'FINANCIAR_ESTUDIOS',
+    'PARA_MANTENER_HOGAR',
+    'GASTOS_PERSONALES',
+    'NO_APLICA',
+  ],
+  BonoDesarrollo: ['SI', 'NO'],
+  HaRealizadoPracticasPreprofesionales: ['SI', 'NO'],
+  EntornoInstitucionalPracticasProfesionales: ['PUBLICA', 'PRIVADA', 'ONG', 'OTRO', 'NO_APLICA'],
+  SectorEconomicoPracticaProfesional: [
+    'AGRICULTURA_GANADERIA_SILVICULTURA_Y_PESCA',
+    'EXPLOTACION_DE_MINAS_Y_CANTERAS',
+    'INDUSTRIAS_MANUFACTURERAS',
+    'SUMINISTRO_ELECTRICIDAD_GAS_VAPOR_AIRE_ACONDICIONADO',
+    'DISTRIBUCION_AGUA_ALCANTARILLADO_GESTION_DESECHOS_SANEAMIENTO',
+    'CONSTRUCCION',
+    'COMERCIO_MAYOR_MENOR_REPARACION_VEHICULOS_AUTOMOTORES',
+    'TRANSPORTE_Y_ALMACENAMIENTO',
+    'ALOJAMIENTO_Y_SERVICIO_DE_COMIDAS',
+    'INFORMACION_Y_COMUNICACION',
+    'ACTIVIDADES_FINANCIERAS_Y_DE_SEGUROS',
+    'ACTIVIDADES_INMOBILIARIAS',
+    'ACTIVIDADES_PROFESIONALES_CIENTIFICAS_Y_TECNICAS',
+    'SERVICIOS_ADMINISTRATIVOS_Y_DE_APOYO',
+    'ADMINISTRACION_PUBLICA_Y_DEFENSA',
+    'ENSEÑANZA',
+    'ATENCION_SALUD_HUMANA_Y_ASISTENCIA_SOCIAL',
+    'ARTES_ENTRETENIMIENTO_Y_RECREACION',
+    'OTRAS_ACTIVIDADES_DE_SERVICIOS',
+    'HOGARES_PRODUCTORES_BIENES_SERVICIOS_USO_PROPIO',
+    'NO_APLICA',
+  ],
+  TipoBeca: ['TOTAL', 'PARCIAL', 'NO_APLICA'],
+  PrimeraRazonBeca: ['SOCIOECONOMICA', 'NO_APLICA'],
+  SegundaRazonBeca: ['EXCELENCIA_ACADEMICA', 'NO_APLICA'],
+  TerceraRazonBeca: ['DEPORTISTA', 'NO_APLICA'],
+  CuartaRazonBeca: ['PUEBLOS_Y_NACIONALIDADES', 'NO_APLICA'],
+  QuintaRazonBeca: ['DISCAPACIDAD', 'NO_APLICA'],
+  SextaRazonBeca: ['OTRA', 'NO_APLICA'],
+  FinanciamientoBeca: ['FONDOS_PROPIOS', 'TRANSFERENCIA_DEL_ESTADO', 'DONACIONES', 'NO_APLICA'],
+  ParticipaEnProyectoVinculacionSociedad: ['SI', 'NO', 'NO_APLICA'],
+  TipoAlcanceProyectoVinculacion: ['NACIONAL', 'PROVINCIAL', 'CANTONAL', 'PARROQUIAL', 'NO_APLICA'],
+  NivelFormacionPadre: [
+    'CENTRO_ALFABETIZACION',
+    'JARDIN_INFANTES',
+    'PRIMARIA',
+    'EDUCACION_BASICA',
+    'SECUNDARIA',
+    'EDUCACION_MEDIA',
+    'SUPERIOR_NO_UNIVERSITARIA',
+    'SUPERIOR_UNIVERSITARIA',
+    'POSGRADO',
+    'NO_APLICA',
+  ],
+  NivelFormacionMadre: [
+    'CENTRO_ALFABETIZACION',
+    'JARDIN_INFANTES',
+    'PRIMARIA',
+    'EDUCACION_BASICA',
+    'SECUNDARIA',
+    'EDUCACION_MEDIA',
+    'SUPERIOR_NO_UNIVERSITARIA',
+    'SUPERIOR_UNIVERSITARIA',
+    'POSGRADO',
+    'NO_APLICA',
+  ],
+  DisenoCurricular: ['VALIDACION', 'REGULAR'],
+} as const;
+
+export type CatalogoItem = {
+  id: string;
+  codigo: number | null;
+  nombre: string;
+};
+
+export type ProvinciaItem = CatalogoItem & { paisId: string };
+export type CantonItem = CatalogoItem & { provinciaId: string };
+export type PuebloNacionalidadItem = CatalogoItem & { tipo: string };
+
+export type EnumsResponse = typeof ENUM_VALUES & {
+  Pais: CatalogoItem[];
+  Provincia: ProvinciaItem[];
+  Canton: CantonItem[];
+  PuebloNacionalidad: PuebloNacionalidadItem[];
+};
